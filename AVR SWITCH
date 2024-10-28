@@ -1,0 +1,18 @@
+#include <avr/io.h>
+
+int main()
+{
+    DDRB = 0xff;  
+  int x;// Configure PORTC as output to connect Leds
+    DDRD = 0x00;           // Configure PORTA as Input to connect switches
+    PORTD = 0x00;          // Enable The Pull Ups of PORTA.
+    while(1)
+    {
+     x=(PIND & (1<<7))>>7; //right shift to bring the value of x to be 0 or 1  
+      if(x==1)
+        PORTB|=(1<<4);
+      else
+         PORTB&=0x00;
+    }
+    return 0;
+}
